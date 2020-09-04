@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bilibili.rtw.dao.StaffDao">
+    <select id="selectAll" resultType="User">
+        select id,username,password,`position`,`position grade` positionGrade from user
+    </select>
+
+    <update id="updateStaff">
+        update user set username=#{username},password=#{password},`position`=#{position},`position grade`=#{positionGrade} where id=#{id}
+    </update>
+
+    <delete id="deleteByPrimaryKey">
+        delete from user where id=#{id}
+    </delete>
+
+    <insert id="insertStaff">
+        insert into user (username,password,`position`,`position grade`) values (#{username},#{password},#{position},#{positionGrade})
+    </insert>
+
+    <select id="countStaff" resultType="int">
+        select count(*) from user
+    </select>
+
+    <select id="selectByPage" resultType="User">
+        select id,username,password,`position`,`position grade` positionGrade from user limit #{start},5
+    </select>
+</mapper>
